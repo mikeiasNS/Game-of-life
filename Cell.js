@@ -1,46 +1,96 @@
 function Cell(){
 	this.alive = false;
 	this.kind = null;
-	this.qtdNearCellsAlive = 0;
+	this.kindACellsNear = 0;
+	this.kindBCellsNear = 0;
 	this.line = 0;
 	this.column = 0;
+	this.dying = false;
+	this.borning = false;
+
+	this.init = function (line, column) {
+		this.line = line;
+		this.column = column
+	}
 
 	//interpretationFunction
-	this.calculateQtdNearCellsAlive = function(context){
-		var totalNearCells = 0;
+	this.interpretsEnviroment = function(enviroment){
+		var totalNearACells = 0;
+		var totalNearBCells = 0;
 
-		for (var l = this.line - 1; l < this.line + 1; l++) {
-			for(var c = this.column - 1; c < this.ccolumn + 1; c++) {
-				if(l == this.line && c == column) {
+		for (var l = this.line - 1; l <= this.line + 1; l++) {
+			for(var c = this.column - 1; c <= this.column + 1; c++) {
+				if(l == this.line && c == this.column) {
 					continue;
 				}
-				if(context[l][c].alive) {
-					totalNearCells++;
+				if(l < 0 || l >= enviroment.length || 
+					c < 0 || c >= enviroment[0].length) {
+					continue;
+				}
+				if(enviroment[l][c].alive) {
+					if(enviroment[l][c].kind == 1) {
+						totalNearACells++;
+					} else if(enviroment[l][c].kind == 2) {
+						totalNearBCells++;
+					}
 				}
 			}
 		}
 
-		this.qtdNearCellsAlive = totalNearCells;
+		this.kindACellsNear = totalNearACells;
+		this.kindBCellsNear = totalNearBCells;
+
+		this.reproductionRules();
+		this.deathRules();
+	};
+
+	this.reproductionRules = function () {
+		if(this.kindACellsNear == 3 && !this.alive) {
+			this.kind = 1;
+			this.borning = true;
+		} else if(this.kindBCellsNear == 4 && !this.alive) {
+			this.kind = 2;
+			this.borning = true;
+		}
+	}
+
+	this.deathRules = function() {
+		if(this.kind == 1) {
+			//Kind A
+			if(this.kindACellsNear  < 2 || this.kindACellsNear > 3) {
+				this.dying = true;
+			} 
+		} else if(this.kind == 2) {
+			//Kind B
+			if(this.kindBCellsNear == 2 || this.kindBCellsNear == 3) {
+				//Keep same state
+				return;
+			}
+
+			if(this.kindBCellsNear  < 4 || this.kindBCellsNear > 6) {
+				this.dying = true;
+			} 
+		}
 	};
 
 	//action function
-	this.applyRules = function() {
-		if(this.kind == 1) {
-			//Especie A
-			if(this.qtdNearCellsAlive  < 2 || this.qtdNearCellsAlive > 3) {
-				this.alive = false;
-			} else if(this.qtdNearCellsAlive == 3) {
-				this.alive = true;
-			}
-
-		} else if(this.kind == 2) {
-			// Especie B
-
-		} else {
-			if(this.qtdNearCellsAlive == 3) {
-				this.kind = 1;
-				this.alive = true;
-			}
+	this.apply = function() {
+		if(this.dying) {
+			this.die();
 		}
-	};
+		if(this.borning) {
+			this.born();
+		}
+	}
+
+	this.die = function() {
+		this.kind = null;
+		this.alive = false;
+		this.dying = false;
+	}
+
+	this.born = function() {
+		this.alive = true;
+		this.borning = false;
+	}
 }

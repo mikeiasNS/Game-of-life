@@ -1,3 +1,30 @@
 #cv {
-  border: 1px solid black;
+	border: 1px solid black;
+}
+
+#indicators {
+	color: red;
+	height: 30px;
+	width: 602px;
+	margin-left: 0px;
+	background-color: rgb(255,255,225);
+	text-align: center;
+}
+
+.selected {
+	border: 1px solid orange;
+	border-radius: 5px;
+	color: white;
+	background-color: orange;
+}
+
+.button {
+	border: 1px solid orange;
+	border-radius: 5px;
+	color: orange;
+	background-color: white;
+}
+
+button:focus {
+	outline: none;
 }
