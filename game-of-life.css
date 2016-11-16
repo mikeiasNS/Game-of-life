@@ -1,12 +1,30 @@
+.title {
+	width: 195px;
+	margin: auto;
+}
+
+#canvas-div {
+	width: 600px;
+	margin: auto;
+}
+
+body {
+	margin: auto;
+	height: 100%;
+	width: 950px;
+}
+
 #cv {
+	width: 600px;
 	border: 1px solid black;
+	margin: auto;
 }
 
 #indicators {
 	color: red;
 	height: 30px;
 	width: 602px;
-	margin-left: 0px;
+	margin: auto;
 	background-color: rgb(255,255,225);
 	text-align: center;
 }
@@ -27,4 +45,39 @@
 
 button:focus {
 	outline: none;
+}
+
+#live-speed {
+	width: 4em;
+}
+
+label {
+	margin-right: 1em;
+}
+
+.options {
+	width: 600px;
+	margin: auto;
+	padding: 5px;
+	margin-bottom: 1em;
+}
+
+.examples {
+	width: 50%;
+	float: right;
+}
+
+.kind-choose {
+	width: 50%;
+	float: left;
+}
+
+#indicators {
+	width: 950px;
+	margin: auto;
+}
+
+.controls {
+	width: 600px;
+	margin: 1em 	auto;
 }

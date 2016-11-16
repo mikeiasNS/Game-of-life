@@ -23,10 +23,14 @@ var totalKindB = 0;
 var deaths = 0;
 var borns = 0;
 
+var timer;
+var playing = false;
+var liveSpeed = document.getElementById("live-speed").value;
+
 cv.addEventListener('click', function(event) {
   var point = getMousePos(cv, event);
-  var cellLine = Math.floor(point.y / cv.height * number_of_cells_vertical);
-  var cellColumn = Math.floor(point.x / cv.width * number_of_cells_horizontal);
+  var cellLine = Math.floor((point.y / cv.height) * number_of_cells_vertical);
+  var cellColumn = Math.floor((point.x / cv.width) * number_of_cells_horizontal);
 
   var vertices = getVerticesByCell(cellLine, cellColumn);
 
@@ -36,6 +40,14 @@ cv.addEventListener('click', function(event) {
   scanLine(vertices);
   console.log(cellLine, cellColumn);
 }, false);
+
+document.getElementById("live-speed").addEventListener("change", function() {
+  clearInterval(timer);
+  liveSpeed = document.getElementById("live-speed").value;
+  timer = window.setInterval(step, liveSpeed);
+  document.getElementById("live-button").innerHTML = "Pause";
+  playing = true;
+})
 
 function step() {
   borns = 0; deaths = 0; totalKindA = 0; totalKindB = 0;
@@ -69,6 +81,97 @@ function step() {
   }
 
   updateCanvas()
+}
+
+function live(play) {
+  playing = play || playing;
+  if (playing) {
+    clearInterval(timer);
+    document.getElementById("live-button").innerHTML = "Play";
+    playing = false;
+  } else {
+    timer = window.setInterval(step, liveSpeed);
+    document.getElementById("live-button").innerHTML = "Pause";
+    playing = true;
+  }
+}
+
+function glider() {
+  enviroment[10][10].alive = true;
+  enviroment[10][10].kind = 1;
+
+  enviroment[11][11].alive = true;
+  enviroment[11][11].kind = 1;
+
+  enviroment[12][11].alive = true;
+  enviroment[12][11].kind = 1;
+
+  enviroment[12][10].alive = true;
+  enviroment[12][10].kind = 1;
+
+  enviroment[12][9].alive = true;
+  enviroment[12][9].kind = 1;
+
+  updateCanvas();
+}
+
+function smallExploder() {
+  enviroment[10][10].alive = true;
+  enviroment[10][10].kind = 1;
+
+  enviroment[10][11].alive = true;
+  enviroment[10][11].kind = 1;
+
+  enviroment[11][12].alive = true;
+  enviroment[11][12].kind = 1;
+
+  enviroment[12][11].alive = true;
+  enviroment[12][11].kind = 1;
+
+  enviroment[12][10].alive = true;
+  enviroment[12][10].kind = 1;
+
+  enviroment[12][9].alive = true;
+  enviroment[12][9].kind = 1;
+
+  enviroment[11][9].alive = true;
+  enviroment[11][9].kind = 1;
+
+  updateCanvas();
+}
+
+function tenCellRow() {
+  enviroment[10][6].alive = true;
+  enviroment[10][6].kind = 1;
+
+  enviroment[10][7].alive = true;
+  enviroment[10][7].kind = 1;
+
+  enviroment[10][8].alive = true;
+  enviroment[10][8].kind = 1;
+
+  enviroment[10][9].alive = true;
+  enviroment[10][9].kind = 1;
+
+  enviroment[10][10].alive = true;
+  enviroment[10][10].kind = 1;
+
+  enviroment[10][11].alive = true;
+  enviroment[10][11].kind = 1;
+
+  enviroment[10][12].alive = true;
+  enviroment[10][12].kind = 1;
+
+  enviroment[10][13].alive = true;
+  enviroment[10][13].kind = 1;
+
+  enviroment[10][14].alive = true;
+  enviroment[10][14].kind = 1;
+
+  enviroment[10][15].alive = true;
+  enviroment[10][15].kind = 1;
+
+  updateCanvas();
 }
 
 function updateCanvas() {

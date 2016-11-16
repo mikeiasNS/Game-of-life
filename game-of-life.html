@@ -4,18 +4,37 @@
     <title>Game of life</title>
     <meta charset="utf-8" />
 
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <link rel="stylesheet" type="text/css" href="game-of-life.css">
   </head>
   <body onload="createEnviroment();">
-    <button id="kindA" class="selected" onClick="selectKindA();">Especie A</button>
-    <button id="kindB" class="button" onClick="selectKindB();">Especie B</button>
+
+    <div class="title"><h1>Game of life</h1></div>
+    <div class="options">
+      <div class="kind-choose">
+        <p>Escolha a espécie e clique para inserir:</p>
+        <button id="kindA" class="selected" onClick="selectKindA();">Especie A</button>
+        <button id="kindB" class="button" onClick="selectKindB();">Especie B</button>
+      </div>
+      <div class="examples">
+        <p>Escolha exemplos pre-feitos:</p>
+        <button id="glider" class="button" onClick="glider();">Glider</button>
+        <button id="small-exploder" class="button" onClick="smallExploder();">Small exploder</button>
+        <button id="ten-cell-row" class="button" onClick="tenCellRow();">Ten Cell Row</button>
+      </div>
+    </div>
+
 
     </br>
-    <div id="indicators"> </div>
-    <canvas id="cv" width=600 height=600></canvas>
+    <div id="indicators" style="margin: 1em;"> </div>
+    <div id="canvas-div"><canvas id="cv" width=600 height=600></canvas></div>
     </br>
 
-    <button class="button" onClick="step();">Geração</button>
+    <div class="controls">
+      <button id="live-button" class="button" onClick="live();">Play</button>
+      <input id="live-speed" type="number" value="1000"> <label>ms</label>
+      <button class="button" onClick="step();">Geração</button>
+    </div>
 
     <script src="Cell.js"></script>
     <script src="scanLine.js"></script>
