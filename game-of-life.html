@@ -27,10 +27,21 @@
 
     </br>
     <div id="indicators" style="margin: 1em;"> </div>
-    <div id="canvas-div"><canvas id="cv" width=600 height=600></canvas></div>
+
+    <div class="row">
+      <div id="canvas-div" style="float: left;"><canvas id="cv" width=600 height=600></canvas></div>
+      <div width=300 style="float: right;">
+        <h4 class="text-center">Regras</h4>
+
+        <h5>Espécie A</h5>
+        <h5>Espécie B</h5>
+      </div>
+    </div>
+    
+    
     </br>
 
-    <div class="controls">
+    <div class="row controls">
       <button id="live-button" class="button" onClick="live();">Play</button>
       <input id="live-speed" type="number" value="1000"> <label>ms</label>
       <button class="button" onClick="step();">Geração</button>
