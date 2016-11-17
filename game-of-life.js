@@ -27,6 +27,14 @@ var timer;
 var playing = false;
 var liveSpeed = document.getElementById("live-speed").value;
 
+var minNeiA = document.getElementById("min-nei-a").value;
+var maxNeiA = document.getElementById("max-nei-a").value;
+var birthNumberA = document.getElementById("birth-number-a").value;
+
+var minNeiB = document.getElementById("min-nei-b").value;
+var maxNeiB = document.getElementById("max-nei-b").value;
+var birthNumberB = document.getElementById("birth-number-b").value;
+
 cv.addEventListener('click', function(event) {
   var point = getMousePos(cv, event);
   var cellLine = Math.floor((point.y / cv.height) * number_of_cells_vertical);

@@ -23,7 +23,7 @@ function Cell(){
 				if(l == this.line && c == this.column) {
 					continue;
 				}
-				if(l < 0 || l >= enviroment.length || 
+				if(l < 0 || l >= enviroment.length ||
 					c < 0 || c >= enviroment[0].length) {
 					continue;
 				}
@@ -40,15 +40,23 @@ function Cell(){
 		this.kindACellsNear = totalNearACells;
 		this.kindBCellsNear = totalNearBCells;
 
+		minNeiA = document.getElementById("min-nei-a").value;
+		maxNeiA = document.getElementById("max-nei-a").value;
+		birthNumberA = document.getElementById("birth-number-a").value;
+
+		minNeiB = document.getElementById("min-nei-b").value;
+		maxNeiB = document.getElementById("max-nei-b").value;
+		birthNumberB = document.getElementById("birth-number-b").value;
+
 		this.reproductionRules();
 		this.deathRules();
 	};
 
 	this.reproductionRules = function () {
-		if(this.kindACellsNear == 3 && !this.alive) {
+		if(this.kindACellsNear == birthNumberA && !this.alive) {
 			this.kind = 1;
 			this.borning = true;
-		} else if(this.kindBCellsNear == 4 && !this.alive) {
+		} else if(this.kindBCellsNear == birthNumberB && !this.alive) {
 			this.kind = 2;
 			this.borning = true;
 		}
@@ -57,9 +65,9 @@ function Cell(){
 	this.deathRules = function() {
 		if(this.kind == 1) {
 			//Kind A
-			if(this.kindACellsNear  < 2 || this.kindACellsNear > 3) {
+			if(this.kindACellsNear  < minNeiA || this.kindACellsNear > maxNeiA) {
 				this.dying = true;
-			} 
+			}
 		} else if(this.kind == 2) {
 			//Kind B
 			if(this.kindBCellsNear == 2 || this.kindBCellsNear == 3) {
@@ -67,9 +75,9 @@ function Cell(){
 				return;
 			}
 
-			if(this.kindBCellsNear  < 4 || this.kindBCellsNear > 6) {
+			if(this.kindBCellsNear  < minNeiB || this.kindBCellsNear > maxNeiB) {
 				this.dying = true;
-			} 
+			}
 		}
 	};
 

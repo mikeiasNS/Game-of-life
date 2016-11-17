@@ -29,16 +29,50 @@
     <div id="indicators" style="margin: 1em;"> </div>
 
     <div class="row">
-      <div id="canvas-div" style="float: left;"><canvas id="cv" width=600 height=600></canvas></div>
-      <div width=300 style="float: right;">
-        <h4 class="text-center">Regras</h4>
+      <div id="canvas-div" class="col-lg-8" style="float: left;"><canvas id="cv" width=600 height=600></canvas></div>
+      <div class="col-lg-4" width=300 style="float: right;">
+        <h4>Regras</h4>
 
-        <h5>Espécie A</h5>
+        <h5>Espécie A:</h5>
+        <ul>
+          <li>Morte:</li>
+          <ul>
+            <li>
+              <label>Minimo de vizinhos</label> <input id="min-nei-a" type="number" value="2">
+            </li>
+            <li>
+              <label>M´aximo de vizinhos</label> <input id="max-nei-a" type="number" value="3">
+            </li>
+          </ul>
+          <li>Nascimento:</li>
+          <ul>
+            <li>
+              <label>N´umero de vizinhos</label> <input id="birth-number-a" type="number" value="3">
+            </li>
+          </ul>
+        </ul>
         <h5>Espécie B</h5>
+        <ul>
+          <li>Morte:</li>
+          <ul>
+            <li>
+              <label>Minimo de vizinhos</label> <input id="min-nei-b" type="number" value="4">
+            </li>
+            <li>
+              <label>M´aximo de vizinhos</label> <input id="max-nei-b" type="number" value="6">
+            </li>
+          </ul>
+          <li>Nascimento:</li>
+          <ul>
+            <li>
+              <label>N´umero de vizinhos</label> <input id="birth-number-b" type="number" value="4">
+            </li>
+          </ul>
+        </ul>
       </div>
     </div>
-    
-    
+
+
     </br>
 
     <div class="row controls">
